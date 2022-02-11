@@ -1,0 +1,82 @@
+{% extends 'header.html' %}
+{% load static%}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+	
+   	<!-- contact section start -->
+    <div class="collection_text">Login up</div>
+    <div class="layout_padding contact_section">
+    	<div class="container">
+    		<h1 class="new_text"><strong>Login Now</strong></h1>
+            {% if msg %}
+            <b style="color: red;">{{msg}}</b>
+            {% endif %}
+    	</div>
+    	<div class="container-fluid ram">
+    		<div class="row">
+    			<div class="col-md-6">
+    				<div class="email_box">
+                    <div class="input_main">
+                       <div class="container">
+                          <form class="main_form" method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+                           
+                            <div class="form-group">
+                              <input type="text" class="email-bt" placeholder="Email" name="email" id="email">
+                              <span id="email_error"></span>
+                            </div>
+                           
+                            <div class="form-group">
+                              <input type="text" class="email-bt" placeholder="Password" name="password">
+                            </div>
+                          
+                       </div> 
+                       <div class="send_btn">
+                        <button class="main_bt">Login</button>
+                       </div>
+                       </form>                   
+                    </div>
+    		</div>
+    			</div>
+    			<div class="col-md-6">
+    				<div class="shop_banner">
+    					<div class="our_shop">
+    						<button class="out_shop_bt">Our Shop</button>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+   	<!-- contact section end -->
+<script>
+    $("#email").change(function(){
+        var email=$(this).val();
+        $.ajax({
+            url: '/ajax/validate_email/',
+            data: {
+              'email':email
+            },
+            dataType:'json',
+            success:function (data) {
+                if (!data.is_taken) {
+                  document.getElementById("email_error").innerHTML="Email Not Registerd";
+              }else{
+                  document.getElementById("email_error").innerHTML="";
+              }
+        }
+  });    
+  });
+</script>
+
+	
+   </body>
+</html>
+{% endblock %}

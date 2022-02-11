@@ -1,0 +1,70 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+     
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+	
+	<!-- new collection section end -->
+	<!-- New Arrivals section start -->
+    <div class="layout_padding gallery_section">
+    	<div class="container">
+             <h2>our Product</h2>
+    		<div class="row">
+               
+    			<div class="col-sm-4">
+
+    				<div class="best_shoes">
+    					<p class="best_text">Best Shoes </p>
+    					<div class="shoes_icon"><img src="{{product.product_image.url}}"></div>
+                        <h3>Rs.<strong class="red">{{product.product_price}}</strong></h3>
+                        <span>Category : {{product.product_category}}</span>
+                        <span>Description: {{product.product_desc}}</span>
+                        <span>Model : {{product.product_model}}</span>
+
+
+
+                        
+                        {% if request.session.email %}
+                           {% if wishlist_flag %}
+                              <a href="{% url 'remove_from_wishlist' pk=product.pk %}"><input type="button" value="Remove From Wishlist" class="btn btn-danger"></a>
+                           {% else %}
+                              <a href="{% url 'add_to_wishlist' pk=product.pk %}"><input type="button" value="Add To Wishlist" class="btn btn-primary"></a>
+                           {% endif %}
+       					      
+                           {% if cart_flag %}
+                              <a href="{% url 'remove_from_cart' pk=product.pk %}"><input type="button" value="Remove From Cart" class="btn btn-danger"></a>
+                           {% else %}
+                              <a href="{% url 'add_to_cart' pk=product.pk %}"><input type="button" value="Add To Cart" class="btn btn-primary"></a>
+                           {% endif %}
+                        {% else %}
+                            <a href="{% url 'login' %}"><input type="button" value="Login" class="btn btn-primary"></a>
+                        {% endif %}
+
+                        
+    				</div>
+    			</div>
+               
+    			
+    			</div>
+    			
+    		</div>
+    		
+    			
+    			<
+    		</div>
+    		<div class="buy_now_bt">
+    			<button class="buy_text">Buy Now</button>
+    		</div>
+    	</div>
+    </div>
+   	<!-- New Arrivals section end -->
+   	<!-- contact section start -->
+   
+   </body>
+</html>
+{% endblock%}

@@ -1,0 +1,49 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+     
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+	
+	<!-- new collection section end -->
+	<!-- New Arrivals section start -->
+    <div class="layout_padding gallery_section">
+    	<div class="container">
+             <h2>My Product</h2>
+    		<div class="row">
+                {% for i in product %}
+    			<div class="col-sm-4">
+
+    				<div class="best_shoes">
+    					<p class="best_text">Best Shoes </p>
+    					<div class="shoes_icon"><img src="{{i.product_image.url}}"></div>
+                        <h3>Rs.<strong class="red">{{i.product_price}}</strong></h3>
+                        <span>{{i.product_category}}</span>
+    					<a href="{% url 'seller_edit_product' pk=i.pk %}"><input type="button" value="EDIT" class="btn btn-primary"></a>
+                        <a href="{% url 'seller_delete_product' pk=i.pk %}"><input type="button" value="DELETE" class="btn btn-danger"></a>
+    				</div>
+    			</div>
+                {% endfor %}
+    			
+    			</div>
+    			
+    		</div>
+    		
+    			
+    			<
+    		</div>
+    		<div class="buy_now_bt">
+    			<button class="buy_text">Buy Now</button>
+    		</div>
+    	</div>
+    </div>
+   	<!-- New Arrivals section end -->
+   	<!-- contact section start -->
+   
+   </body>
+</html>
+{% endblock%}

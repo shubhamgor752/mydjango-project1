@@ -1,0 +1,75 @@
+{% extends 'seller_header.html' %}
+{% load static%}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+	
+   	<!-- contact section start -->
+    <div class="collection_text">Add Product</div>
+    <div class="layout_padding contact_section">
+    	<div class="container">
+    		<h1 class="new_text"><strong>Add Product Now</strong></h1>
+            {% if msg %}
+            <b style="color: red;">{{msg}}</b>
+            {% endif %}
+    	</div>
+    	<div class="container-fluid ram">
+    		<div class="row">
+    			<div class="col-md-6">
+    				<div class="email_box">
+                    <div class="input_main">
+                       <div class="container">
+                      <form class="main_form" method="post" action="{% url 'seller_add_product' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                              <select class="form-group" name="product_category">
+                                <option>---Select Product Category---</option>
+                                <option value="nike">Nike</option>
+                                <option value="puma">Puma</option>
+                                <option value="adidas">Adidas</option>
+                                <option value="bata">Bata</option>
+                                <option value="fila">Fila</option>
+                              </select>
+                              <input type="text" class="email-bt" placeholder="Product Model" name="product_model">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="email-bt" placeholder="Product Price" name="product_price">
+                            </div>
+                            
+                            <div class="form-group">
+                              <textarea class="textarea" placeholder="Product Description" name="product_desc"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                              <input type="file" class="email-bt"  name="product_image">
+                            </div>
+                           
+                       </div> 
+                       <div class="send_btn">
+                        <button class="main_bt">Add Product</button>
+                       </div>     
+                      </form>              
+                    </div>
+    		</div>
+    			</div>
+    			<div class="col-md-6">
+    				<div class="shop_banner">
+    					<div class="our_shop">
+    						<button class="out_shop_bt">Our Shop</button>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+   	<!-- contact section end -->
+	
+   </body>
+</html>
+{% endblock %}
